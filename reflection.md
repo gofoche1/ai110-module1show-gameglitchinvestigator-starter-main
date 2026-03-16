@@ -48,13 +48,9 @@ Yes they did help me to design the test and also explaining how Streamlit reruns
 
 ## 4. What did you learn about Streamlit and state?
 
-- In your own words, explain why the secret number kept changing in the original app.
-The secret number kept changing because Streamlit reruns the entire script every time the user interacts with the app
-
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
 Streamlit works by rerunning the whole program every time something changes on the page. Session state is like a small storage box that keeps important values even when the app reruns.
-- What change did you make that finally gave the game a stable secret number?
-The change that fixed the issue was storing the secret number in st.session_state.secret and only generating it when the value does not already exist.
+
 ---
 
 ## 5. Looking ahead: your developer habits
