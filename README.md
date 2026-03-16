@@ -26,8 +26,27 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+The games purpose is to guess the right number and you are given hints to go higher or lower. 
 - [ ] Detail which bugs you found.
+  - the new game button isn't functioning properly
+  - the hint gives the opposite number 
+  -  inaccurate attempts 
+  - the normal has a higher range compared to the hard
+
 - [ ] Explain what fixes you applied.
+Corrected the attempt counter: Attempts now start at 0
+
+The counter increments only after a valid guess
+
+- Improved the New Game reset logic
+
+- Reset attempts, score, and status to "playing"
+
+- Clear guess history
+
+Generate a new secret number within the correct difficulty range
+
+Ensured difficulty changes reset the game
 
 ## 📸 Demo
 
