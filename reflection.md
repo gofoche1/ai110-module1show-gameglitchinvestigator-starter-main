@@ -5,17 +5,34 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+It took a long time to load 
 - List at least two concrete bugs you noticed at the start  
   (for example: "the secret number kept changing" or "the hints were backwards").
+  - the new game button isn't functioning properly
+  - the hint gives the opposite number 
+  -  Attempts left showed a negative number
+  - the normal has a higher range compared to the hard
+
+
+
+
 
 ---
 
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
-- Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
-- Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+Claude and Copilot
 
+- Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+The issue is in the "New Game" button logic in app When clicked, it resets st.session_state.attempts to 0 and generates a new secret using random.randint(1, 100), which is hardcoded and ignores the selected difficulty.
+Fix: update the line to use the difficulty range:
+st.session_state.secret = random.randint(low, high)
+
+I verified this suggestion by reviewing the code and confirming that low and high correspond to the difficulty range selected by the user
+
+- Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+i think one incorrect suggestion from the AI involved the TypeError handling in the check_guess function. The AI suggested removing the try/except block and always converting the guess to an integer before comparing it with the secret number.
 ---
 
 ## 3. Debugging and testing your fixes

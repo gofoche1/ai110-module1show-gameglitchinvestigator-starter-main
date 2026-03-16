@@ -1,13 +1,16 @@
 import random
 import streamlit as st
+from logic_utils import check_guess
 
+# FIXME: Logic breaks here - the range for hard is smaller than normal, but it should be larger.
+# #FIX: Refactored HARD difficulty to have a larger range than NORMAL using Copilot Agent mode
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
-        return 1, 100
-    if difficulty == "Hard":
         return 1, 50
+    if difficulty == "Hard":
+        return 1, 100
     return 1, 100
 
 
@@ -27,25 +30,7 @@ def parse_guess(raw: str):
         return False, None, "That is not a number."
 
     return True, value, None
-
-
-def check_guess(guess, secret):
-    if guess == secret:
-        return "Win", "🎉 Correct!"
-
-    try:
-        if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
-        else:
-            return "Too Low", "📉 Go LOWER!"
-    except TypeError:
-        g = str(guess)
-        if g == secret:
-            return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
-
+#FIX: Refactored logic into logic_utils.py using Copilot Agent mode
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
@@ -76,11 +61,14 @@ difficulty = st.sidebar.selectbox(
     ["Easy", "Normal", "Hard"],
     index=1,
 )
+# FIXME: Logic breaks here - the attempt limit for hard is smaller than normal,
+#  but it should be larger.
+# #FIX: Refactored HARD difficulty to have more attempts than NORMAL using Copilot Agent mode
 
 attempt_limit_map = {
     "Easy": 6,
     "Normal": 8,
-    "Hard": 5,
+    "Hard": 10,
 }
 attempt_limit = attempt_limit_map[difficulty]
 
@@ -131,6 +119,7 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
+# FIXME: New Game resets attempts to 0, but the counter starts at 1
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
